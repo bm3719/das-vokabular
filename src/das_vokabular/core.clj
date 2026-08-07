@@ -13,7 +13,7 @@
 
 (defn csv-data->maps [csv-data]
   (map zipmap
-       (->> [:article :word]
+       (->> [:english :german]
             repeat)
        (rest csv-data)))
 
@@ -37,18 +37,18 @@
   (if (valid-file? dict)
     ;; Main interaction loop.
     (let [data (read-file dict)]
-      (println "Geben Sie den richtigen deutsche Wort ein (oder \"q\" zum Beenden)")
+      (println "Geben Sie den richtigen deutsche Wort ein (oder „q“ zum Beenden)")
       (loop []
-        (let [word-article (next-word-article data)]
-          (println "» " (:word word-englisch))
+        (let [english-german (next-word-article data)]
+          (println "»" (:english english-german))
           (print "> ")
           (flush)
           (let [ans (read-line)]
             (if (= (s/lower-case ans) "q")
               (println "Auf Wiedersehen.")
               (do
-                (if (= (:article word-deutsch) ans)
+                (if (= (:german english-german) ans)
                   (println "Richtig!")
-                  (println (str "Falsch!  Die Antwort war \"" (:article word-deutsch) "\"!")))
+                  (println (str "Falsch!  Die Antwort war „" (:german english-german) "“!")))
                 (recur)))))))
     (println "Dictionary file format invalid.")))
