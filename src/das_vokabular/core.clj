@@ -32,23 +32,39 @@
 (defn next-word-article [dict]
   (nth dict (rand-int (count dict))))
 
+(defn score->str
+  "Convert the score vector to a human readable string." [score]
+  (if (= 0 (apply + score))
+    "0%"
+    (str
+     (-> (/ (first score) (apply + score))
+         float
+         (* 10000)
+         int
+         float
+         (/ 100)) "%")))
+
 (defn -main [& _]
   ;; Before attempting to parse file, ensure it's in valid form.
   (if (valid-file? dict)
     ;; Main interaction loop.
     (let [data (read-file dict)]
-      (println "Geben Sie den richtigen deutsche Wort ein (oder „q“ zum Beenden)")
-      (loop []
+      (println "Geben Sie den richtigen deutsche Wort ein (oder „q“ zum Beenden).")
+      (loop [score [0 0]]
         (let [english-german (next-word-article data)]
           (println "»" (:english english-german))
           (print "> ")
           (flush)
           (let [ans (read-line)]
             (if (= (s/lower-case ans) "q")
-              (println "Auf Wiedersehen.")
               (do
-                (if (= (:german english-german) ans)
-                  (println "Richtig!")
-                  (println (str "Falsch!  Die Antwort war „" (:german english-german) "“!")))
-                (recur)))))))
+                (println "Auf Wiedersehen.")
+                (println "Score:" (str (first score) "/" (apply + score))
+                         (score->str score)))
+              (if (= (:german english-german) ans)
+                (do (println "Richtig!")
+                    (recur [(inc (first score)) (second score)]))
+                (do (println (str "Falsch!  Die Antwort war „"
+                                  (:german english-german) "“!"))
+                    (recur [(first score) (inc (second score))]))))))))
     (println "Dictionary file format invalid.")))

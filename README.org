@@ -16,10 +16,16 @@ This is a simple and straight-forward implementation, quickly written so I can
 use it immediately.  It's also a merger with my previous project, [[https://github.com/bm3719/die-artikel][die-artikel]],
 which only covered gendered articles.  Here, any noun requires the inclusion of
 the article.
+
+Program will track correct/wrong answers and report a score upon exit.
 ** Usage
 Either run this as-is, or replace the lexicon in =resources/data.csv=, which is
 comma-delimited in =English,German= form.
 ** Ideas for later
 - Maybe randomly switch between both English->German and German->English.  Not
   sure this is a good idea though.  Will think about it.
-- Track correct/incorrect answers and give a score upon exit.
+- Consider adding phrases, given that many German phrases don't translate
+  literally.
+- Will probably clean up the more obvious vocab later, removing many English
+  cognates and other very obvious vocab, just to save time while using and
+  reduce typing that doesn't result in any learning.
