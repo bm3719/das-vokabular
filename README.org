@@ -27,5 +27,5 @@ comma-delimited in =English,German= form.
 - Consider adding phrases, given that many German phrases don't translate
   literally.
 - Will probably clean up the more obvious vocab later, removing many English
-  cognates and other very obvious vocab, just to save time while using and
-  reduce typing that doesn't result in any learning.
+  cognates and easy entries, just to save time while using and reduce typing
+  that doesn't result in any learning.
