@@ -1,0 +1,26 @@
+* das-vokabular
+A Clojure CLI application intended for use as a vocabulary memory tool for
+quizzing myself on German nouns and verbs.
+
+The intent here is to build vocabulary based on linear accrual of nouns and
+verbs used in textbooks being read, which currently is just /Jannach's German
+for Reading Knowledge, 6th Ed./ Doing the exercises within most textbooks
+requires this internalization in an on-going process.  This project addresses
+that side of things, leaving mainly the grammar to learn directly from the book
+itself.
+
+This is something that already exists in many accessible webapp forms, but I'd
+rather do the same from a terminal or REPL, as well as customize the dataset to
+have it grow with me as I read along.
+
+This is a simple and straight-forward implementation, quickly written so I can
+use it immediately.  It's also a merger with my previous project, [[https://github.com/bm3719/die-artikel][die-artikel]],
+which only covered gendered articles.  Here, any noun requires the inclusion of
+the article.
+** Usage
+Either run this as-is, or replace the lexicon in =resources/data.csv=, which is
+comma-delimited in =English,German= form.
+** Ideas for later
+- Maybe randomly switch between both English->German and German->English.  Not
+  sure this is a good idea though.  Will think about it.
+- Track correct/incorrect answers and give a score upon exit.
