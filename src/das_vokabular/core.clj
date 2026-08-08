@@ -33,16 +33,14 @@
   (nth dict (rand-int (count dict))))
 
 (defn score->str
-  "Convert the score vector to a human readable string." [score]
-  (if (= 0 (apply + score))
+  "Convert the score vector to human readable percentage form." [[right wrong]]
+  (if (zero? (+ right wrong))
     "0%"
-    (str
-     (-> (/ (first score) (apply + score))
-         float
-         (* 10000)
-         int
-         float
-         (/ 100)) "%")))
+    (-> (/ right (+ right wrong))
+        (* 10000.0)
+        Math/round
+        (/ 100.0)
+        (str "%"))))
 
 (defn -main [& _]
   ;; Before attempting to parse file, ensure it's in valid form.
