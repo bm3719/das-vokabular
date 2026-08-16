@@ -47,7 +47,7 @@
   (if (valid-file? dict)
     ;; Main interaction loop.
     (let [data (read-file dict)]
-      (println "Geben Sie den richtigen deutsche Wort ein (oder „q“ zum Beenden).")
+      (println "Geben Sie das richtige deutsche Wort ein (oder „q“ zum Beenden).")
       (loop [score [0 0]]
         (let [english-german (next-word-article data)]
           (println "»" (:english english-german))
